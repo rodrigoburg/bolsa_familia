@@ -1,0 +1,48 @@
+<html lang="pt-br">
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <script src="js/jquery-2.1.0.min.js"></script>
+  <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+  <script type="text/javascript" src="https://s3-sa-east-1.amazonaws.com/blogedados/javascripts/20130819/csvjson.min.js"></script>
+  <script src="js/dimple.v2.0.0.min.js"></script>
+  <script type="text/javascript" src="js/bolsa_familia.js"></script>
+ <style>
+ #radios{
+     font-family: 'pt sans';
+     font-size: 13px;
+     font-style: normal;
+     font-variant: normal;
+     font-weight: normal;
+ }
+ #texto {
+     font-family: 'pt sans';
+     font-size: 13px;
+     font-style: normal;
+     font-variant: normal;
+     font-weight: normal;
+ }
+  </style>
+</head>
+<body>
+    <div id="radios"><form name="Regioes"><input onclick="showRegion(this.value);" type="radio" checked="checked" name="sregiao" value="Norte" />Norte   <input onclick="showRegion(this.value);" type="radio" disabled="disabled" name="sregiao" value="Sul" />Sul    <input onclick="showRegion(this.value);" type="radio" disabled="disabled" name="sregiao" value="Nordeste" />Nordeste   <input onclick="showRegion(this.value);" type="radio" disabled="disabled" name="sregiao" value="Centro-Oeste" />Centro-Oeste <input onclick="showRegion(this.value);" type="radio" disabled="disabled" name="sregiao" value="Sudeste" />Sudeste <input onclick="showRegion(this.value);" type="radio" disabled="disabled" name="sregiao" value="Brasil" />Brasil</form>Selecione a região acima para ver os municípios de cada Estado no gráfico.
+    Atenção: a opção "Brasil" pode demorar a carregar por causa da quantidade de dados</div>
+    <div id="bolsa">
+    <script type="text/javascript">
+    var width = $("#bolsa").width()
+    carregaDados();
+    setTimeout('graficoSul()',5000);
+    setTimeout('graficoNordeste()',10000);
+    setTimeout('graficoCentroOeste()',15000);
+    setTimeout('graficoSudeste()',20000);
+    setTimeout('ativa_radio("Brasil")',25000);
+    </script></div>
+<div id="texto">
+    O gráfico de dispersão mostra qual é a relação entre duas variáveis. Neste caso, cada um dos pontos representa um município. Eles seguem uma diagonal, o que mostra que quanto maior a taxa de cobertura do Bolsa Família, maior foi a votação da presidente Dilma Rousseff (PT) no 1o turno de 2014. O tamanho das bolhas representa a população de cada município, em números absolutos.
+<br/>
+<br/>
+    A distribuição dos municípios pelo gráfico revela diferenças regionais no Brasil. As cidades do Nordeste estão localizadas mais à direita e para cima, ou seja, têm maior parte das suas famílias recebendo o Bolsa Família e também votou em maior proporção para Dilma que no Sudeste, por exemplo. A concentração de bolhas maiores no canto inferior esquerdo mostra como as capitais e grandes cidades dependem menos do programa e não votaram na candidata do PT. 
+<br/>
+<br/>
+    É interessante perceber, porém, a mesma relação entre Bolsa Família e voto na Dilma se repete dentro das próprias regiões - mesmo no Sudeste, onde Dilma teve menos votos, ela foi melhor nas cidades em que mais pessoas dependem da transferência de renda. O contrário também aconteceu no Nordeste - ela foi pior nas cidades em que menos famílias proporcionalmente recebem o benefício social.</div>
+</body>
