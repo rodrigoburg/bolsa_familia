@@ -25,17 +25,11 @@
   </style>
 </head>
 <body>
-    <div id="radios"><form name="Regioes"><input onclick="showRegion(this.value);" type="radio" checked="checked" name="sregiao" value="Norte" />Norte   <input onclick="showRegion(this.value);" type="radio" disabled="disabled" name="sregiao" value="Sul" />Sul    <input onclick="showRegion(this.value);" type="radio" disabled="disabled" name="sregiao" value="Nordeste" />Nordeste   <input onclick="showRegion(this.value);" type="radio" disabled="disabled" name="sregiao" value="Centro-Oeste" />Centro-Oeste <input onclick="showRegion(this.value);" type="radio" disabled="disabled" name="sregiao" value="Sudeste" />Sudeste <input onclick="showRegion(this.value);" type="radio" disabled="disabled" name="sregiao" value="Brasil" />Brasil</form>Selecione a região acima para ver os municípios de cada Estado no gráfico.
-    Atenção: a opção "Brasil" pode demorar a carregar por causa da quantidade de dados</div>
+    <div id="radios"><form name="Regioes"><input onclick="showRegion(this.value);" type="checkbox" checked="checked" name="sregiao" value="Norte" />Norte   <input onclick="showRegion(this.value);" type="checkbox" name="sregiao" value="Sul" />Sul    <input onclick="showRegion(this.value);" type="checkbox" name="sregiao" value="Nordeste" />Nordeste   <input onclick="showRegion(this.value);" type="checkbox" name="sregiao" value="Centro-Oeste" />Centro-Oeste <input onclick="showRegion(this.value);" type="checkbox" name="sregiao" value="Sudeste" />Sudeste</form>Selecione a região acima para ver os municípios de cada Estado no gráfico.</div>
     <div id="bolsa">
     <script type="text/javascript">
     var width = $("#bolsa").width()
     carregaDados();
-    setTimeout('graficoSul()',5000);
-    setTimeout('graficoNordeste()',10000);
-    setTimeout('graficoCentroOeste()',15000);
-    setTimeout('graficoSudeste()',20000);
-    setTimeout('ativa_radio("Brasil")',25000);
     </script></div>
 <div id="texto">
     O gráfico de dispersão mostra qual é a relação entre duas variáveis. Neste caso, cada um dos pontos representa um município. Eles seguem uma diagonal, o que mostra que quanto maior a taxa de cobertura do Bolsa Família, maior foi a votação da presidente Dilma Rousseff (PT) no 1o turno de 2014. O tamanho das bolhas representa a população de cada município, em números absolutos.
