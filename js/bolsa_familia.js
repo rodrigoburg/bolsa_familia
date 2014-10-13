@@ -1,7 +1,7 @@
 var height = 600
 var dados = null;
 var chart = null
-var selecionados = ["Norte"]
+var desenhados = ["Norte"]
 
 function carregaDados() {
     jQuery.ajax("bolsa.csv", {
@@ -24,8 +24,7 @@ function arrumaTooltip(chart) {
             "Município: " + e.aggField[0],
             "UF: " + e.aggField[1],
            "% das famílias que recebem Bolsa Família"+": "+ Math.round(e.xValue) + "%",
-           "% dos votos da Dilma no 1o. turno"+": "+ Math.round(e.yValue) + "%" ,
-           "População: "+ addCommas(e.zValue)
+           "% dos votos da Dilma no 1o. turno"+": "+ Math.round(e.yValue) + "%" 
         ];
     };
     return chart;
@@ -48,11 +47,11 @@ function addCommas(nStr) {
 function graficoNorte() {
     var svg = dimple.newSvg("#bolsa", window.width, window.height);
     svg[0][0].setAttribute('id', 'svg_Norte');
-    var local_data = dimple.filterData(dados, "regiao", selecionados);
+    var local_data = dimple.filterData(dados, "regiao", desenhados);
     var myChart = new dimple.chart(svg, local_data),
         x = myChart.addMeasureAxis("x", "porc_bf"),
         y = myChart.addMeasureAxis("y", "dilma.vs.2014"),
-        z = myChart.addMeasureAxis("z", "pop.2011");
+        z = myChart.addMeasureAxis("z", "ordem_pop");
     
     x.overrideMax = 100;
     y.overrideMax = 100;
@@ -70,15 +69,20 @@ function graficoNorte() {
 function showRegion(regiao) {
     data = window.dados
     chart = window.chart
-    selecionados = window.selecionados
-    if (selecionados.indexOf(regiao) > -1) {
-        selecionados.splice(selecionados.indexOf(regiao),1)
+    desenhados = window.desenhados
+    if (desenhados.indexOf(regiao) == -1) {
+        desenhados.push(regiao)
+        data = dimple.filterData(data,"regiao",desenhados)
+        chart.data = data
+        chart.draw(1000)
     } else {
-        selecionados.push(regiao)
+        bolas = $("circle[class*='dimple-"+regiao.toLowerCase()+"']")
+        if ($(bolas[0]).css("display") == "none") {
+            bolas.show()            
+        } else {
+            bolas.hide()
+        }
     }
-    data = dimple.filterData(data,"regiao",selecionados)
-    chart.data = data
-    chart.draw()
     window.chart = chart
-    window.selecionados = selecionados
+    window.desenhados = desenhados
 }
